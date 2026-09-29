@@ -1,0 +1,205 @@
+{
+ "vix_25_18": {
+  "ccw": 26,
+  "n": 30,
+  "p_one_sided": 2.9738061130046848e-05,
+  "ccw_area_share": 0.975
+ },
+ "vix_30_20": {
+  "ccw": 18,
+  "n": 21,
+  "p_one_sided": 0.0007448196411132812,
+  "ccw_area_share": 0.973
+ },
+ "vix_35_22": {
+  "ccw": 12,
+  "n": 14,
+  "p_one_sided": 0.0064697265625,
+  "ccw_area_share": 0.983
+ },
+ "vix_40_25": {
+  "ccw": 7,
+  "n": 9,
+  "p_one_sided": 0.08984375,
+  "ccw_area_share": 0.972
+ },
+ "paired_vix": {
+  "ccw": 18,
+  "n": 21,
+  "p_one_sided": 0.0007448196411132812,
+  "ccw_area_share": 0.973
+ },
+ "paired_realized_21d": {
+  "ccw": 3,
+  "n": 21,
+  "p_one_sided": 0.9998893737792969,
+  "ccw_area_share": 0.355
+ },
+ "paired_realized_10d": {
+  "ccw": 4,
+  "n": 21,
+  "p_one_sided": 0.9992551803588867,
+  "ccw_area_share": 0.546
+ },
+ "paired_garch_filtered": {
+  "ccw": 3,
+  "n": 21,
+  "p_one_sided": 0.9998893737792969,
+  "ccw_area_share": 0.332
+ },
+ "paired_opposite_vix_vs_realized_21d": 15,
+ "episodes": [
+  {
+   "start": "2000-03-03",
+   "end": "2000-06-29",
+   "area_vix": 56.1,
+   "area_realized_21d": -51.7
+  },
+  {
+   "start": "2000-09-28",
+   "end": "2001-06-05",
+   "area_vix": 60.3,
+   "area_realized_21d": -117.6
+  },
+  {
+   "start": "2001-08-24",
+   "end": "2002-03-01",
+   "area_vix": 51.8,
+   "area_realized_21d": -87.7
+  },
+  {
+   "start": "2002-05-31",
+   "end": "2003-05-09",
+   "area_vix": 131.8,
+   "area_realized_21d": -113.5
+  },
+  {
+   "start": "2007-07-25",
+   "end": "2007-09-21",
+   "area_vix": -15.2,
+   "area_realized_21d": -27.4
+  },
+  {
+   "start": "2007-10-31",
+   "end": "2007-12-21",
+   "area_vix": 28.7,
+   "area_realized_21d": -24.2
+  },
+  {
+   "start": "2007-12-26",
+   "end": "2008-04-25",
+   "area_vix": 28.8,
+   "area_realized_21d": -48.8
+  },
+  {
+   "start": "2008-08-28",
+   "end": "2009-12-22",
+   "area_vix": 619.4,
+   "area_realized_21d": 662.6
+  },
+  {
+   "start": "2010-04-29",
+   "end": "2010-10-11",
+   "area_vix": 86.6,
+   "area_realized_21d": 44.0
+  },
+  {
+   "start": "2011-07-25",
+   "end": "2012-01-19",
+   "area_vix": 28.3,
+   "area_realized_21d": -97.8
+  },
+  {
+   "start": "2015-08-20",
+   "end": "2015-10-05",
+   "area_vix": 39.9,
+   "area_realized_21d": -17.5
+  },
+  {
+   "start": "2018-02-02",
+   "end": "2018-02-14",
+   "area_vix": 23.6,
+   "area_realized_21d": -25.9
+  },
+  {
+   "start": "2018-12-03",
+   "end": "2019-01-09",
+   "area_vix": 14.9,
+   "area_realized_21d": -68.1
+  },
+  {
+   "start": "2020-02-21",
+   "end": "2021-02-12",
+   "area_vix": 335.9,
+   "area_realized_21d": -369.9
+  },
+  {
+   "start": "2021-11-24",
+   "end": "2021-12-08",
+   "area_vix": -4.1,
+   "area_realized_21d": -16.9
+  },
+  {
+   "start": "2022-01-14",
+   "end": "2022-03-28",
+   "area_vix": 24.5,
+   "area_realized_21d": -38.7
+  },
+  {
+   "start": "2022-04-04",
+   "end": "2022-08-10",
+   "area_vix": 103.0,
+   "area_realized_21d": 47.5
+  },
+  {
+   "start": "2022-08-18",
+   "end": "2022-12-01",
+   "area_vix": 33.0,
+   "area_realized_21d": -48.6
+  },
+  {
+   "start": "2024-08-01",
+   "end": "2024-08-13",
+   "area_vix": 14.0,
+   "area_realized_21d": -16.4
+  },
+  {
+   "start": "2025-03-27",
+   "end": "2025-05-12",
+   "area_vix": -27.6,
+   "area_realized_21d": -164.6
+  },
+  {
+   "start": "2026-02-27",
+   "end": "2026-04-09",
+   "area_vix": 12.9,
+   "area_realized_21d": -33.5
+  }
+ ],
+ "vix_1990s_25_18": {
+  "ccw": 4,
+  "n": 5,
+  "p_one_sided": 0.1875,
+  "ccw_area_share": 0.597
+ },
+ "vix_1990s_30_20": {
+  "ccw": 2,
+  "n": 3,
+  "p_one_sided": 0.5,
+  "ccw_area_share": 0.375
+ },
+ "vix_1990s_35_22": {
+  "ccw": 1,
+  "n": 4,
+  "p_one_sided": 0.9375,
+  "ccw_area_share": 0.536
+ },
+ "gjr_params": {
+  "mu": 0.05,
+  "omega": 0.0185,
+  "alpha": 0.0,
+  "gamma": 0.2042,
+  "beta": 0.8816,
+  "nu": 6.9534
+ }
+}

@@ -1,0 +1,51 @@
+{
+ "days": 6694,
+ "horizon_days": 10,
+ "neighbours": 20,
+ "results": [
+  {
+   "coordinates": [
+    "lv"
+   ],
+   "error_vix": 1.004,
+   "error_drawdown": 1.045,
+   "wrong_vix_direction": 0.444
+  },
+  {
+   "coordinates": [
+    "lv",
+    "dd"
+   ],
+   "error_vix": 1.066,
+   "error_drawdown": 1.098,
+   "wrong_vix_direction": 0.427,
+   "control_error_vix": 1.003,
+   "control_wrong_vix_direction": 0.438
+  },
+  {
+   "coordinates": [
+    "lv",
+    "dd",
+    "vel"
+   ],
+   "error_vix": 1.024,
+   "error_drawdown": 1.092,
+   "wrong_vix_direction": 0.421,
+   "control_error_vix": 1.011,
+   "control_wrong_vix_direction": 0.429
+  },
+  {
+   "coordinates": [
+    "lv",
+    "dd",
+    "vel",
+    "mem"
+   ],
+   "error_vix": 1.025,
+   "error_drawdown": 1.088,
+   "wrong_vix_direction": 0.421,
+   "control_error_vix": 0.982,
+   "control_wrong_vix_direction": 0.422
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "scale_to_vix": 1.082,
+ "corr_model_vol_vix": 0.879,
+ "runs": 200,
+ "median_episodes": 15.0,
+ "ccw_fraction_mean": 0.338,
+ "ccw_fraction_p5_p95": [
+  0.143,
+  0.539
+ ],
+ "runs_at_or_above_observed_18_of_21": 0,
+ "ccw_area_share_mean": 0.369
+}
