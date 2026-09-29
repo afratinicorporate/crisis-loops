@@ -1,4 +1,4 @@
-Required Notice: Copyright 2026 Alessio Fratini (Quantis Research)
+Required Notice: Copyright 2026 Quantis Research
 
 # PolyForm Noncommercial License 1.0.0
 
