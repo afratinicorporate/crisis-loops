@@ -75,3 +75,7 @@ Results are written to `results/` as JSON. Raw data are not redistributed: run t
 - Bollerslev, T., Tauchen, G. & Zhou, H. (2009). Expected Stock Returns and Variance Risk Premia. *Review of Financial Studies*, 22(11), 4463–4492.
 - Zumbach, G. (2009). Time Reversal Invariance in Finance. *Quantitative Finance*, 9(5), 505–515.
 - Ewing, J. A. (1885). Experimental Researches in Magnetism. *Philosophical Transactions of the Royal Society of London*, 176, 523–640.
+
+## License
+
+[PolyForm Noncommercial 1.0.0](LICENSE.md). Free for research, study, teaching and other noncommercial use. Commercial use requires permission from the author.
