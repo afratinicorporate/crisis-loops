@@ -37,6 +37,10 @@ Place each trading day in a two-dimensional state space: **drawdown** (distance 
 | + VIX velocity | 1.02 | 1.01 |
 | + VIX 21 days earlier | 1.02 | 0.98 |
 
+## How to read the direction of a loop
+
+Take one price level, say 15% below the peak, and compare the volatility there on the way down and on the way back. If it is lower on the way back, the recovery road runs below the fall and the loop turns counter-clockwise: this is the VIX, where fear is priced out before the price recovers. If it is higher on the way back, the loop turns clockwise: this is the price's own volatility, where the market is still agitated while it climbs back. See `figures/fig3_loop_direction_schematic.png`.
+
 ## Reading
 
 - **Cycle scale: structure.** The orbit of the VIX turns counter-clockwise: fear is priced out before the price recovers. The orbit of the price's own volatility turns clockwise: the market stays agitated while it climbs back. A standard asymmetric GARCH reproduces the second orbit and fails on the first.
@@ -63,6 +67,7 @@ python 01_loop_orientation.py  # cycle scale: VIX, realized, GARCH-filtered, thr
 python 02_null_model_gjr.py    # null model: 200 GJR-GARCH histories
 python 03_step_scale_test.py   # step scale: nearest-neighbour test with controls
 python 04_figures.py           # figures/fig1_*.png, figures/fig2_*.png
+python 05_schematic.py         # figures/fig3_*.png: what clockwise / counter-clockwise means (no data)
 ```
 
 Results are written to `results/` as JSON. Raw data are not redistributed: run the download script. Runtime is a few minutes, dominated by the GARCH simulations.
