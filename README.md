@@ -39,7 +39,7 @@ Place each trading day in a two-dimensional state space: **drawdown** (distance 
 
 ## How to read the direction of a loop
 
-Take one price level, say 15% below the peak, and compare the volatility there on the way down and on the way back. If it is lower on the way back, the recovery road runs below the fall and the loop turns counter-clockwise: this is the VIX, where fear is priced out before the price recovers. If it is higher on the way back, the loop turns clockwise: this is the price's own volatility, where the market is still agitated while it climbs back. See `figures/fig3_loop_direction_schematic.png`.
+Take one price level, say 15% below the peak, and compare the volatility there on the way down and on the way back. If it is lower on the way back, the recovery road runs below the fall and the loop turns counter-clockwise: this is the VIX, where fear is priced out before the price recovers. If it is higher on the way back, the loop turns clockwise: this is the price's own volatility, where the market is still agitated while it climbs back. See `figures/fig3_loop_direction_schematic.png`. The average loop measured on the 21 crises is in `figures/fig4_twenty_one_crises.png`: for the VIX the recovery runs below the fall at every depth, for realized volatility it runs above.
 
 ## Reading
 
@@ -68,6 +68,7 @@ python 02_null_model_gjr.py    # null model: 200 GJR-GARCH histories
 python 03_step_scale_test.py   # step scale: nearest-neighbour test with controls
 python 04_figures.py           # figures/fig1_*.png, figures/fig2_*.png
 python 05_schematic.py         # figures/fig3_*.png: what clockwise / counter-clockwise means (no data)
+python 06_figure_mirror.py     # figures/fig4_*.png: all 21 crises as paired bars, plus the average loop
 ```
 
 Results are written to `results/` as JSON. Raw data are not redistributed: run the download script. Runtime is a few minutes, dominated by the GARCH simulations.
