@@ -1,11 +1,11 @@
 """Cycle scale. Does the crisis orbit in the (drawdown, volatility) plane turn the same way every time?
 Test 1: episodes defined on the VIX, loop measured with the VIX.
-Test 2 (paired): the SAME episode windows, loop measured with realized volatility (21d and 10d windows)
-and with GJR-GARCH filtered volatility (no rolling window)."""
+Test 2 (paired): the SAME episode windows, loop measured with backward realized volatility (21, 10, 5 days)
+and with GJR-GARCH filtered volatility dated at the close (and, for the record, dated one day late)."""
 import json, os
 import numpy as np
 from scipy.stats import binomtest
-from common import load, episodes, loop_areas, gjr_fit, gjr_filter, gjr_month_vol, OUT
+from common import load, episodes, loop_areas, gjr_fit, gjr_filter, gjr_next_variance, gjr_month_vol, OUT
 
 d = load(); out = {}
 def summary(A):
@@ -19,11 +19,13 @@ for hi, lo in [(25, 18), (30, 20), (35, 22), (40, 25)]:
 eps = episodes(d.VIX, 30, 20)
 r = 100 * np.log(d.S).diff().dropna().values
 mu, om, a, g, b, nu = gjr_fit(r)
-_, h = gjr_filter(r, mu, om, a, g, b)
-garch_vol = np.r_[np.nan, gjr_month_vol(h, om, a, g, b)]
+e, h = gjr_filter(r, mu, om, a, g, b)
+garch_vol = np.r_[np.nan, gjr_month_vol(gjr_next_variance(e, h, om, a, g, b), om, a, g, b)]      # dated at the close
+garch_vol_one_day_late = np.r_[np.nan, gjr_month_vol(h, om, a, g, b)]                           # the earlier, wrong dating
 A_vix = loop_areas(d.dd, d.VIX, eps)
 paired = {"vix": A_vix, "realized_21d": loop_areas(d.dd, d.rv21, eps),
-          "realized_10d": loop_areas(d.dd, d.rv10, eps), "garch_filtered": loop_areas(d.dd, garch_vol, eps)}
+          "realized_10d": loop_areas(d.dd, d.rv10, eps), "realized_5d": loop_areas(d.dd, d.rv5, eps),
+          "garch_filtered": loop_areas(d.dd, garch_vol, eps), "garch_filtered_one_day_late": loop_areas(d.dd, garch_vol_one_day_late, eps)}
 for k, A in paired.items():
     out[f"paired_{k}"] = summary(A)
 out["paired_opposite_vix_vs_realized_21d"] = int(np.sum(np.sign(A_vix) != np.sign(paired["realized_21d"])))

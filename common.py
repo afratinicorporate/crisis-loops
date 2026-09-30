@@ -17,7 +17,7 @@ def load(start=START, end=END):
     d.columns = ["S", "VIX"]
     d["dd"] = 100 * (d.S / d.S.cummax() - 1)                 # distance below the running all-time high
     lr = np.log(d.S).diff()
-    for w in (10, 21):
+    for w in (5, 10, 21):
         d[f"rv{w}"] = 100 * np.sqrt(252 * (lr**2).rolling(w).mean())
     return d.loc[start:end]
 
@@ -76,6 +76,21 @@ def gjr_fit(r):
     res = minimize(nll, [0.05, 0.02, 0.01, 0.12, 0.88, 7], method="Nelder-Mead",
                    options=dict(maxiter=6000, xatol=1e-6, fatol=1e-6))
     return res.x
+
+
+def gjr_next_variance(e, h, om, a, g, b):
+    """h[t+1]: the variance of tomorrow's return, known at today's close (it already contains today's return).
+    A VIX-like quantity at the close of day t must be built from this, not from h[t]."""
+    return om + (a + g * (e < 0)) * e**2 + b * h
+
+
+def garman_klass(ohlc):
+    """Garman & Klass (1980) daily variance from open, high, low, close of the SAME day (no look-back)."""
+    return 0.5 * np.log(ohlc.High / ohlc.Low)**2 - (2 * np.log(2) - 1) * np.log(ohlc.Close / ohlc.Open)**2
+
+
+def load_ohlc():
+    return pd.read_csv(os.path.join(HERE, "data", "spx_ohlc.csv"), index_col=0, parse_dates=True)
 
 
 def gjr_month_vol(h, om, a, g, b):

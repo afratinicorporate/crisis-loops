@@ -19,12 +19,12 @@ fig = qr.frame("Same price, two moments: which road is higher?",
                "Illustrative shapes, no data. Horizontal axis: distance below the all-time high. Vertical axis: volatility. "
                "The dashed line compares the same price level (15% below the peak) on the way down and on the way back.")
 panels = [
-    ("VIX: the price of fear", qr.OXBLOOD, "counter-clockwise",
+    ("A coincident measure of volatility", qr.OXBLOOD, "counter-clockwise",
      bez((0, 15), (-8, 22), (-22, 45), (-30, 55)), bez((-30, 55), (-31, 30), (-18, 22), (0, 15)),
-     "on the way back fear is\nalready LOWER at the same price"),
-    ("Realized volatility: the price itself", qr.GREEN, "clockwise",
+     "on the way back volatility is\nalready LOWER at the same price"),
+    ("The same volatility, measured late", qr.GREEN, "clockwise",
      bez((0, 15), (-10, 17), (-24, 28), (-30, 45)), bez((-30, 45), (-26, 60), (-8, 52), (0, 15)),
-     "on the way back the market is\nstill MORE agitated at the same price"),
+     "on the way back the lagging measure\nis still HIGHER at the same price"),
 ]
 for k, (title, c, orient, down, up, note) in enumerate(panels):
     ax = fig.add_axes([0.075 + k * 0.465, 0.20, 0.405, 0.56])

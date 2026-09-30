@@ -28,11 +28,11 @@ def average_loop(col):
             store.append([vv[idx == j].mean() if np.any(idx == j) else np.nan for j in range(len(CTR))])
     return np.nanmean(fall, axis=0), np.nanmean(rec, axis=0)
 
-fig = qr.frame("Twenty-one crises. Two volatilities. Opposite directions.",
+fig = qr.frame("Twenty-one crises. Two clocks. Opposite directions.",
                "Top: one pair of bars per crisis since 2000 (up = counter-clockwise loop, down = clockwise). Bottom: the average loop those crises add up to.",
                "OBSERVED",
                "S&P 500 and VIX daily closes, Yahoo Finance, 3 Jan 2000 - 29 Sep 2026. Crisis = VIX above 30, from the last to the first close below 20. Bars: signed loop area over the "
-               "episode's own ranges. Average loop: volatility rescaled 0-1 per episode, averaged at equal depth of the fall. Realized volatility = 21-day rolling.")
+               "episode's own ranges. Average loop: volatility rescaled 0-1 per episode, averaged at equal depth of the fall. Trailing volatility = returns of the last 21 days (lags by about 10 days).")
 # ---- top: evidence
 ax = fig.add_axes([0.06, 0.575, 0.90, 0.215])
 x = np.arange(len(eps)); w = 0.38
@@ -44,8 +44,8 @@ for s in ("left", "bottom"): ax.spines[s].set_visible(False)
 ax.tick_params(length=0, pad=3)
 # ---- bottom: the structure
 for k, (col, c, head, note, x0) in enumerate([
-        ("VIX", qr.OXBLOOD, f"VIX: counter-clockwise in {int((V > 0).sum())} of {len(V)}", "fear is priced out before the price recovers", 0.085),
-        ("rv21", qr.GREEN, f"Realized volatility: clockwise in {int((R < 0).sum())} of {len(R)}", "the price is still agitated while it climbs back", 0.555)]):
+        ("VIX", qr.OXBLOOD, f"VIX: counter-clockwise in {int((V > 0).sum())} of {len(V)}", "a coincident measure: already lower on the way back", 0.085),
+        ("rv21", qr.GREEN, f"Trailing 21-day volatility: clockwise in {int((R < 0).sum())} of {len(R)}", "a lagging measure: it still shows the fall on the way back", 0.555)]):
     f, r = average_loop(col)
     ax = fig.add_axes([x0, 0.175, 0.37, 0.21])
     X = -CTR                                           # deepest point on the left, like the map

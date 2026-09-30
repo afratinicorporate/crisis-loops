@@ -8,50 +8,65 @@ import figure_style as qr
 
 FIG = os.path.join(HERE, "figures"); d = load()
 R1 = json.load(open(os.path.join(OUT, "01_loop_orientation.json")))
-R2 = json.load(open(os.path.join(OUT, "02_null_model_gjr.json"))); null = np.load(os.path.join(OUT, "02_null_ccw_fractions.npy"))
 R3 = json.load(open(os.path.join(OUT, "03_step_scale_test.json")))
 
-# ---------------- Figure 1: cycle scale ----------------
-fig = qr.frame("Same crisis. Opposite loops.",
-               "The price leaves a crisis slowly. The price of fear leaves it at once. Same 21 crises, same dates, two orbits turning opposite ways.",
+# ---------------- Figure 1: one crisis, three clocks ----------------
+from common import load_ohlc, garman_klass
+R6 = json.load(open(os.path.join(OUT, "07_measurement_lag.json")))
+d["range_c11"] = (100 * np.sqrt(252 * garman_klass(load_ohlc()).rolling(11, center=True).mean())).reindex(d.index)
+fig = qr.frame("Same crisis, opposite loops: the difference is the clock of the instrument.",
+               "Volatility measured as it happens turns one way. Volatility measured on a trailing window turns the other way.",
                "OBSERVED",
-               "S&P 500 and VIX daily closes, Yahoo Finance, 3 Jan 2000 - 29 Sep 2026. Crisis = VIX above 30, from the last to the first close below 20 (21 episodes). "
-               "Realized volatility = 21-day rolling, annualised. Orientation = sign of the signed area of each closed orbit. Null model: GJR-GARCH(1,1)-t fitted to the same returns, 200 simulated histories.")
-ax = fig.add_axes([0.075, 0.20, 0.44, 0.57])
-seg = d.loc["2020-02-21":"2021-02-12"].rolling(5, min_periods=1).mean()
-for col, c, lab, pos in [("VIX", qr.OXBLOOD, "VIX\n(price of fear)", (-6, 70)), ("rv21", qr.GREEN, "realized volatility\n(the price itself)", (-8, 88))]:
-    ax.plot(seg.dd, seg[col], color=c, lw=2)
-    n = len(seg)
-    for f in (0.03, 0.06, 0.09, 0.13, 0.18, 0.25, 0.35, 0.50):
+               "S&P 500 and VIX, Yahoo Finance, 3 Jan 2000 - 29 Sep 2026. Crisis = VIX above 30, from the last to the first close below 20 (21 episodes). "
+               "No-lag volatility = Garman-Klass daily range, centred average. Trailing volatility = close-to-close returns of the last m days. Lag of a trailing window = (m - 1) / 2 days.")
+ax = fig.add_axes([0.075, 0.20, 0.44, 0.57]); seg = d.loc["2020-02-21":"2021-02-12"].rolling(5, min_periods=1).mean()
+for col, c, lab, pos in [("VIX", qr.OXBLOOD, "VIX", (-33.2, 70)), ("range_c11", qr.AMBER, "price volatility,\nno lag", (-25.5, 13)),
+                         ("rv21", qr.GREEN, "price volatility,\nlast 21 days", (-8.5, 86))]:
+    ax.plot(seg.dd, seg[col], color=c, lw=2); n = len(seg)
+    for f in (0.03, 0.06, 0.10, 0.15, 0.22, 0.32, 0.48):
         k = int(f * n)
         ax.add_patch(FancyArrowPatch((seg.dd.iloc[k], seg[col].iloc[k]), (seg.dd.iloc[k + 2], seg[col].iloc[k + 2]),
-                                     arrowstyle="-|>", mutation_scale=22, color=c, lw=0, zorder=4))
+                                     arrowstyle="-|>", mutation_scale=20, color=c, lw=0, zorder=4))
     ax.text(*pos, lab, color=c, fontsize=10.5, weight="semibold", ha="center", linespacing=1.1)
-ax.text(-33.5, 20, "counter-clockwise: fear drains\nbefore the price recovers", color=qr.OXBLOOD, fontsize=9.5, style="italic", ha="left", linespacing=1.15)
-ax.text(-1, 45, "clockwise: the price\nstays agitated\nwhile it climbs back", color=qr.GREEN, fontsize=9.5, style="italic", ha="right", linespacing=1.15)
-ax.set_xlim(-36, 1); ax.set_ylim(10, 100)
+ax.set_xlim(-36, 1); ax.set_ylim(6, 112)
 ax.set_xlabel("distance below the all-time high, %", fontsize=10); ax.set_ylabel("volatility, %", fontsize=10)
-ax.set_title("One crisis, two orbits: Feb 2020 - Feb 2021", loc="left", fontsize=11.5, color=qr.TEXT_MID, pad=8); qr.tidy(ax)
+ax.set_title("One crisis, three clocks: Feb 2020 - Feb 2021", loc="left", fontsize=11.5, color=qr.TEXT_MID, pad=8); qr.tidy(ax)
 
-ax = fig.add_axes([0.665, 0.20, 0.28, 0.57])
-rows = [("VIX", R1["paired_vix"], qr.OXBLOOD), ("realized, 21 days", R1["paired_realized_21d"], qr.GREEN),
-        ("realized, 10 days", R1["paired_realized_10d"], qr.GREEN), ("GARCH-filtered", R1["paired_garch_filtered"], qr.GREEN)]
-for i, (lab, s, c) in enumerate(rows):
-    y = len(rows) - i
-    ax.barh(y, 100 * s["ccw"] / s["n"], color=c, height=0.55)
-    ax.text(100 * s["ccw"] / s["n"] + 2, y, f'{s["ccw"]}/{s["n"]}', va="center", fontsize=10, color=c, weight="semibold")
-    ax.text(-2, y, lab, va="center", ha="right", fontsize=10, color=qr.TEXT_MID)
-lo, hi = np.percentile(null, [5, 95])
-ax.plot([100 * lo, 100 * hi], [0, 0], color=qr.STRONG_GRAY, lw=2); ax.plot(100 * null.mean(), 0, "o", color=qr.STRONG_GRAY, ms=7)
-ax.text(-2, 0, "GARCH, simulated", va="center", ha="right", fontsize=10, color=qr.TEXT_MID)
-ax.text(100 * hi + 2, 0, f"mean {100*null.mean():.0f}%\n0 of 200 runs reach 18/21", va="center", fontsize=8.5, color=qr.STRONG_GRAY, linespacing=1.1)
-ax.axvline(50, color=qr.MID_GRAY, lw=0.9, ls=(0, (4, 3))); ax.text(50, 4.65, "no preferred direction", ha="center", fontsize=8.5, color=qr.STRONG_GRAY, style="italic")
-ax.set_xlim(0, 100); ax.set_ylim(-0.7, 4.9); ax.set_yticks([])
-ax.set_xticks([0, 25, 50, 75, 100]); ax.set_xticklabels(["0", "25", "50", "75", "100%"])
-ax.set_xlabel("share of the 21 crises turning counter-clockwise", fontsize=10)
-ax.set_title("Which way does each orbit turn?", loc="left", fontsize=11.5, color=qr.TEXT_MID, pad=8)
-qr.tidy(ax, grid_y=False); ax.xaxis.grid(True, color=qr.LIGHT_GRAY, lw=0.6)
+ax = fig.add_axes([0.70, 0.20, 0.245, 0.57])
+g = {(x["window"], x["centred"]): x["ccw"] for x in R6["range_volatility"]}
+rows = [("VIX", R1["paired_vix"]["ccw"], qr.OXBLOOD), ("range, centred 11d  (lag 0)", g[(11, True)], qr.AMBER), ("range, centred 5d  (lag 0)", g[(5, True)], qr.AMBER),
+        ("range, last 3d  (lag 1)", g[(3, False)], qr.GREEN), ("returns, last 5d  (lag 2)", R1["paired_realized_5d"]["ccw"], qr.GREEN),
+        ("returns, last 10d  (lag 4.5)", R1["paired_realized_10d"]["ccw"], qr.GREEN), ("returns, last 21d  (lag 10)", R1["paired_realized_21d"]["ccw"], qr.GREEN)]
+for i, (lab, k, c) in enumerate(rows):
+    y = len(rows) - i; ax.barh(y, k, color=c, height=0.58)
+    ax.text(k + 0.4, y, f"{k}/21", va="center", fontsize=10, color=c, weight="semibold"); ax.text(-0.5, y, lab, va="center", ha="right", fontsize=9.5, color=qr.TEXT_MID)
+ax.axvline(10.5, color=qr.MID_GRAY, lw=0.9, ls=(0, (4, 3))); ax.set_xlim(0, 23.5); ax.set_ylim(0.3, 7.7); ax.set_yticks([]); ax.set_xticks([0, 7, 14, 21])
+ax.set_xlabel("counter-clockwise loops out of 21", fontsize=10)
+ax.set_title("Direction by lag of the measure", loc="left", fontsize=11.5, color=qr.TEXT_MID, pad=8); qr.tidy(ax, grid_y=False); ax.xaxis.grid(True, color=qr.LIGHT_GRAY, lw=0.6)
 qr.save(fig, "fig1_same_crisis_opposite_loops", FIG)
+
+# ---------------- Figure 5: direction versus lag, and the null model ----------------
+fa = np.load(os.path.join(OUT, "02_null_ccw_fractions_dated_at_close.npy")); fb = np.load(os.path.join(OUT, "02_null_ccw_fractions_one_day_late.npy"))
+fig = qr.frame("A few days of lag turn the crisis loop backwards.",
+               "Left: counter-clockwise loops out of 21 as the volatility window is moved in time. Right: a standard GARCH reproduces the direction once it is dated correctly.",
+               "OBSERVED",
+               "S&P 500 and VIX, Yahoo Finance, 2000-2026, 21 crises. Left: 21-day realized volatility with the window shifted; lag = distance between window centre and today. "
+               "Right (simulated): GJR-GARCH(1,1)-t fitted to the same returns, 200 histories; proxy dated at the close (black) or one day late (grey).")
+ax = fig.add_axes([0.075, 0.22, 0.44, 0.55]); sh = R6["shifted_window"]
+ax.axvspan(0, 10.5, color=qr.ACCENT_SOFT, lw=0); ax.axhline(18, color=qr.OXBLOOD, lw=1.2, ls=(0, (4, 3))); ax.axhline(10.5, color=qr.MID_GRAY, lw=0.8)
+ax.plot([r["lag_of_window_centre"] for r in sh], [r["ccw"] for r in sh], color=qr.TEXT_DARK, lw=2, marker="o", ms=4)
+ax.text(-10.8, 18.4, "VIX: 18 of 21", color=qr.OXBLOOD, fontsize=10.5, weight="semibold")
+ax.text(5.3, 20.0, "lagging instrument", color=qr.OXBLOOD, fontsize=10, style="italic", ha="center"); ax.text(-5.5, 1.0, "leading instrument\n(uses future days)", color=qr.STRONG_GRAY, fontsize=10, style="italic", ha="center", linespacing=1.15)
+ax.set_xlim(-11.5, 10.8); ax.set_ylim(0, 22); ax.set_xticks(range(-10, 11, 5)); ax.set_yticks([0, 3, 7, 14, 18, 21])
+ax.set_xlabel("lag of the instrument, trading days (0 = coincident)", fontsize=10); ax.set_ylabel("counter-clockwise loops out of 21", fontsize=10); qr.tidy(ax)
+ax = fig.add_axes([0.60, 0.22, 0.345, 0.55]); bins = np.linspace(0, 1, 26)
+ax.hist(fb, bins=bins, color=qr.MID_GRAY); ax.hist(fa, bins=bins, histtype="step", color=qr.TEXT_DARK, lw=2); top = ax.get_ylim()[1]; ax.set_ylim(0, top * 1.55)
+ax.axvline(18 / 21, color=qr.OXBLOOD, lw=1.6, ls=(0, (4, 3)))
+ax.text(0.30, top * 1.5, f"one day late\nmean {100*fb.mean():.0f}%\n{int((fb >= 18/21).sum())} of 200 reach 18/21", color=qr.STRONG_GRAY, fontsize=9.5, ha="center", va="top", linespacing=1.2)
+ax.text(0.66, top * 1.5, f"dated at the close\nmean {100*fa.mean():.0f}%\n{int((fa >= 18/21).sum())} of 200 reach 18/21", color=qr.TEXT_DARK, fontsize=9.5, ha="center", va="top", weight="semibold", linespacing=1.2)
+ax.text(18 / 21 + 0.012, top * 0.95, "observed", color=qr.OXBLOOD, fontsize=9.5, weight="semibold")
+ax.set_xlim(0, 1); ax.set_xticks([0, .5, 1]); ax.set_xticklabels(["0", "50", "100%"]); ax.set_yticks([]); ax.set_xlabel("share of counter-clockwise loops in a simulated history", fontsize=10); qr.tidy(ax, grid_y=False)
+qr.save(fig, "fig5_direction_versus_lag", FIG)
 
 # ---------------- Figure 2: step scale ----------------
 H, K = 10, 20
