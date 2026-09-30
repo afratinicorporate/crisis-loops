@@ -1,0 +1,381 @@
+{
+ "vix_ccw": 18,
+ "n": 21,
+ "shifted_window": [
+  {
+   "shift_days": 0,
+   "lag_of_window_centre": 10,
+   "ccw": 3
+  },
+  {
+   "shift_days": 1,
+   "lag_of_window_centre": 9,
+   "ccw": 3
+  },
+  {
+   "shift_days": 2,
+   "lag_of_window_centre": 8,
+   "ccw": 5
+  },
+  {
+   "shift_days": 3,
+   "lag_of_window_centre": 7,
+   "ccw": 8
+  },
+  {
+   "shift_days": 4,
+   "lag_of_window_centre": 6,
+   "ccw": 9
+  },
+  {
+   "shift_days": 5,
+   "lag_of_window_centre": 5,
+   "ccw": 11
+  },
+  {
+   "shift_days": 6,
+   "lag_of_window_centre": 4,
+   "ccw": 9
+  },
+  {
+   "shift_days": 7,
+   "lag_of_window_centre": 3,
+   "ccw": 15
+  },
+  {
+   "shift_days": 8,
+   "lag_of_window_centre": 2,
+   "ccw": 17
+  },
+  {
+   "shift_days": 9,
+   "lag_of_window_centre": 1,
+   "ccw": 18
+  },
+  {
+   "shift_days": 10,
+   "lag_of_window_centre": 0,
+   "ccw": 18
+  },
+  {
+   "shift_days": 11,
+   "lag_of_window_centre": -1,
+   "ccw": 18
+  },
+  {
+   "shift_days": 12,
+   "lag_of_window_centre": -2,
+   "ccw": 18
+  },
+  {
+   "shift_days": 13,
+   "lag_of_window_centre": -3,
+   "ccw": 18
+  },
+  {
+   "shift_days": 14,
+   "lag_of_window_centre": -4,
+   "ccw": 20
+  },
+  {
+   "shift_days": 15,
+   "lag_of_window_centre": -5,
+   "ccw": 20
+  },
+  {
+   "shift_days": 16,
+   "lag_of_window_centre": -6,
+   "ccw": 21
+  },
+  {
+   "shift_days": 17,
+   "lag_of_window_centre": -7,
+   "ccw": 21
+  },
+  {
+   "shift_days": 18,
+   "lag_of_window_centre": -8,
+   "ccw": 21
+  },
+  {
+   "shift_days": 19,
+   "lag_of_window_centre": -9,
+   "ccw": 21
+  },
+  {
+   "shift_days": 20,
+   "lag_of_window_centre": -10,
+   "ccw": 21
+  },
+  {
+   "shift_days": 21,
+   "lag_of_window_centre": -11,
+   "ccw": 21
+  }
+ ],
+ "range_volatility": [
+  {
+   "window": 1,
+   "centred": false,
+   "lag_days": 0.0,
+   "ccw": 12
+  },
+  {
+   "window": 3,
+   "centred": false,
+   "lag_days": 1.0,
+   "ccw": 8
+  },
+  {
+   "window": 3,
+   "centred": true,
+   "lag_days": 0.0,
+   "ccw": 15
+  },
+  {
+   "window": 5,
+   "centred": false,
+   "lag_days": 2.0,
+   "ccw": 7
+  },
+  {
+   "window": 5,
+   "centred": true,
+   "lag_days": 0.0,
+   "ccw": 19
+  },
+  {
+   "window": 11,
+   "centred": false,
+   "lag_days": 5.0,
+   "ccw": 5
+  },
+  {
+   "window": 11,
+   "centred": true,
+   "lag_days": 0.0,
+   "ccw": 20
+  },
+  {
+   "window": 21,
+   "centred": false,
+   "lag_days": 10.0,
+   "ccw": 4
+  },
+  {
+   "window": 21,
+   "centred": true,
+   "lag_days": 0.0,
+   "ccw": 18
+  }
+ ],
+ "peak_timing": {
+  "vix": {
+   "median_days": -1.0,
+   "peak_at_or_before_trough": 19
+  },
+  "realized_back21": {
+   "median_days": 6.0,
+   "peak_at_or_before_trough": 5
+  },
+  "realized_back10": {
+   "median_days": 4.0,
+   "peak_at_or_before_trough": 8
+  },
+  "range_centred11": {
+   "median_days": -4.0,
+   "peak_at_or_before_trough": 17
+  }
+ },
+ "peak_timing_by_episode": [
+  {
+   "start": "2000-03-03",
+   "trough": "2000-04-14",
+   "end": "2000-06-29",
+   "peak_minus_trough_vix": 0,
+   "peak_minus_trough_realized_back21": 18,
+   "peak_minus_trough_realized_back10": 7,
+   "peak_minus_trough_range_centred11": -3
+  },
+  {
+   "start": "2000-09-28",
+   "trough": "2001-04-04",
+   "end": "2001-06-05",
+   "peak_minus_trough_vix": -1,
+   "peak_minus_trough_realized_back21": 2,
+   "peak_minus_trough_realized_back10": -63,
+   "peak_minus_trough_range_centred11": -6
+  },
+  {
+   "start": "2001-08-24",
+   "trough": "2001-09-21",
+   "end": "2002-03-01",
+   "peak_minus_trough_vix": -1,
+   "peak_minus_trough_realized_back21": 13,
+   "peak_minus_trough_realized_back10": 2,
+   "peak_minus_trough_range_centred11": -4
+  },
+  {
+   "start": "2002-05-31",
+   "trough": "2002-10-09",
+   "end": "2003-05-09",
+   "peak_minus_trough_vix": -46,
+   "peak_minus_trough_realized_back21": -38,
+   "peak_minus_trough_realized_back10": -51,
+   "peak_minus_trough_range_centred11": -58
+  },
+  {
+   "start": "2007-07-25",
+   "trough": "2007-08-15",
+   "end": "2007-09-21",
+   "peak_minus_trough_vix": 1,
+   "peak_minus_trough_realized_back21": 2,
+   "peak_minus_trough_realized_back10": -4,
+   "peak_minus_trough_range_centred11": -2
+  },
+  {
+   "start": "2007-10-31",
+   "trough": "2007-11-26",
+   "end": "2007-12-21",
+   "peak_minus_trough_vix": -9,
+   "peak_minus_trough_realized_back21": 2,
+   "peak_minus_trough_realized_back10": -8,
+   "peak_minus_trough_range_centred11": -8
+  },
+  {
+   "start": "2007-12-26",
+   "trough": "2008-03-10",
+   "end": "2008-04-25",
+   "peak_minus_trough_vix": 5,
+   "peak_minus_trough_realized_back21": 16,
+   "peak_minus_trough_realized_back10": 9,
+   "peak_minus_trough_range_centred11": -31
+  },
+  {
+   "start": "2008-08-28",
+   "trough": "2009-03-09",
+   "end": "2009-12-22",
+   "peak_minus_trough_vix": -72,
+   "peak_minus_trough_realized_back21": -89,
+   "peak_minus_trough_realized_back10": -93,
+   "peak_minus_trough_range_centred11": -101
+  },
+  {
+   "start": "2010-04-29",
+   "trough": "2010-07-02",
+   "end": "2010-10-11",
+   "peak_minus_trough_vix": -30,
+   "peak_minus_trough_realized_back21": -20,
+   "peak_minus_trough_realized_back10": -38,
+   "peak_minus_trough_range_centred11": -35
+  },
+  {
+   "start": "2011-07-25",
+   "trough": "2011-10-03",
+   "end": "2012-01-19",
+   "peak_minus_trough_vix": -39,
+   "peak_minus_trough_realized_back21": -24,
+   "peak_minus_trough_realized_back10": -34,
+   "peak_minus_trough_range_centred11": -35
+  },
+  {
+   "start": "2015-08-20",
+   "trough": "2015-08-25",
+   "end": "2015-10-05",
+   "peak_minus_trough_vix": -1,
+   "peak_minus_trough_realized_back21": 17,
+   "peak_minus_trough_realized_back10": 6,
+   "peak_minus_trough_range_centred11": 3
+  },
+  {
+   "start": "2018-02-02",
+   "trough": "2018-02-08",
+   "end": "2018-02-14",
+   "peak_minus_trough_vix": -3,
+   "peak_minus_trough_realized_back21": 4,
+   "peak_minus_trough_realized_back10": 4,
+   "peak_minus_trough_range_centred11": 2
+  },
+  {
+   "start": "2018-12-03",
+   "trough": "2018-12-24",
+   "end": "2019-01-09",
+   "peak_minus_trough_vix": 0,
+   "peak_minus_trough_realized_back21": 7,
+   "peak_minus_trough_realized_back10": 7,
+   "peak_minus_trough_range_centred11": 0
+  },
+  {
+   "start": "2020-02-21",
+   "trough": "2020-03-23",
+   "end": "2021-02-12",
+   "peak_minus_trough_vix": -5,
+   "peak_minus_trough_realized_back21": 10,
+   "peak_minus_trough_realized_back10": 1,
+   "peak_minus_trough_range_centred11": -3
+  },
+  {
+   "start": "2021-11-24",
+   "trough": "2021-12-01",
+   "end": "2021-12-08",
+   "peak_minus_trough_vix": 0,
+   "peak_minus_trough_realized_back21": 5,
+   "peak_minus_trough_realized_back10": 5,
+   "peak_minus_trough_range_centred11": -1
+  },
+  {
+   "start": "2022-01-14",
+   "trough": "2022-03-08",
+   "end": "2022-03-28",
+   "peak_minus_trough_vix": -1,
+   "peak_minus_trough_realized_back21": 8,
+   "peak_minus_trough_realized_back10": 8,
+   "peak_minus_trough_range_centred11": -28
+  },
+  {
+   "start": "2022-04-04",
+   "trough": "2022-06-16",
+   "end": "2022-08-10",
+   "peak_minus_trough_vix": -27,
+   "peak_minus_trough_realized_back21": -19,
+   "peak_minus_trough_realized_back10": -27,
+   "peak_minus_trough_range_centred11": -29
+  },
+  {
+   "start": "2022-08-18",
+   "trough": "2022-10-12",
+   "end": "2022-12-01",
+   "peak_minus_trough_vix": -1,
+   "peak_minus_trough_realized_back21": 21,
+   "peak_minus_trough_realized_back10": 21,
+   "peak_minus_trough_range_centred11": 2
+  },
+  {
+   "start": "2024-08-01",
+   "trough": "2024-08-05",
+   "end": "2024-08-13",
+   "peak_minus_trough_vix": 0,
+   "peak_minus_trough_realized_back21": 6,
+   "peak_minus_trough_realized_back10": 6,
+   "peak_minus_trough_range_centred11": -2
+  },
+  {
+   "start": "2025-03-27",
+   "trough": "2025-04-08",
+   "end": "2025-05-12",
+   "peak_minus_trough_vix": 0,
+   "peak_minus_trough_realized_back21": 11,
+   "peak_minus_trough_realized_back10": 6,
+   "peak_minus_trough_range_centred11": 3
+  },
+  {
+   "start": "2026-02-27",
+   "trough": "2026-03-30",
+   "end": "2026-04-09",
+   "peak_minus_trough_vix": -1,
+   "peak_minus_trough_realized_back21": 7,
+   "peak_minus_trough_realized_back10": 7,
+   "peak_minus_trough_range_centred11": -15
+  }
+ ]
+}

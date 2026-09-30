@@ -41,7 +41,19 @@
   "p_one_sided": 0.9992551803588867,
   "ccw_area_share": 0.546
  },
+ "paired_realized_5d": {
+  "ccw": 8,
+  "n": 21,
+  "p_one_sided": 0.9053764343261719,
+  "ccw_area_share": 0.64
+ },
  "paired_garch_filtered": {
+  "ccw": 15,
+  "n": 21,
+  "p_one_sided": 0.03917694091796875,
+  "ccw_area_share": 0.962
+ },
+ "paired_garch_filtered_one_day_late": {
   "ccw": 3,
   "n": 21,
   "p_one_sided": 0.9998893737792969,
